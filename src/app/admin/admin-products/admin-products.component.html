@@ -1,0 +1,30 @@
+
+<p>
+    <a routerLink="/admin/products/new" class="btn btn-primary">New Product</a>
+</p>
+<p>
+    <input type="text" 
+    #query
+    class="form-control" 
+    placeholder="search for title..." (keyup) ="serachProduct(query.value)">
+</p>
+
+<table class="table table-stripe">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Price</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody *ngIf ="filterderProducts">
+        <tr *ngFor ="let product of filterderProducts">
+            <td>{{product.title}}</td>
+            <td>{{product.price}}</td>
+            <td>
+                <a [routerLink] ="['/admin/products/', product.id]">Edit</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<p *ngIf ="!filterderProducts">There is no Product</p>

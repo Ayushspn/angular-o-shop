@@ -1,0 +1,8 @@
+<div class="sticky-top sticky">
+        <ul class="list-group">
+                <li class="list-group-item list-group-item-active" (click)="filterProducts()">All</li>
+                <li *ngFor="let category of categories" class="list-group-item" (click)="filterProducts(category)">
+                    {{category.name}}
+                </li>
+            </ul>
+</div>
