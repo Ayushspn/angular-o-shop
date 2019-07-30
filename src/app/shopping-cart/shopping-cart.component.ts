@@ -11,6 +11,7 @@ export class ShoppingCartComponent implements OnInit {
   products;
   maintainArray = [];
   maintainidsarray = [];
+  productFinalCount = 0;
   constructor(private shoppingCartService: ShoppingCartService) { }
 
   ngOnInit() {
@@ -21,15 +22,22 @@ export class ShoppingCartComponent implements OnInit {
         this.products.forEach((Insideproduct) => {
           if (Insideproduct.id === product.id) {
             product.count = product.count + 1;
+            const productTotalPrice = (+product.count) * (+product.price);
+            //console.log(productTotalPrice);
+            product.productTotalPrice = productTotalPrice;
 
           }
         });
         if (this.maintainidsarray.indexOf(product.id) === -1) {
           this.maintainArray.push(product);
+          this.productFinalCount = this.productFinalCount + product.productTotalPrice;
           this.maintainidsarray.push(product.id);
+          console.log(this.productFinalCount);
         }
+        
       });
     });
+    
   }
 
 }

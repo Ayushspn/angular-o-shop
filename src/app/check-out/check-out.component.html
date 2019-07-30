@@ -1,1 +1,11 @@
-<p>check-out works!</p>
+<div class="row">
+    <div class="add-mrgn">
+        <p><b>Totla Price</b> {{finalProductPrice | currency:"₹": true }}</p>
+    </div>
+    <button type="button" class="btn btn-lg btn-primary btn-block btn-check-out add-mrgn">
+        Checkout
+    </button>
+    <div class="add-mrgn">
+            <span class="input-group"><input data-purpose="sc-coupon-input" placeholder="Apply Coupon Code" type="text" class="styles--coupon-box__discount-placeholder--ZfMa6 form-control"><span class="input-group-btn"><button data-purpose="sc-coupon-apply" type="submit" class="styles--button--3CmHj btn btn-secondary"><span>Apply</span></button></span></span>
+    </div>
+</div>

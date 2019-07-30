@@ -1,0 +1,11 @@
+.btn-check-out{
+    background-color: #521822;
+    border: none;
+}
+
+.btn-check-out:hover{
+    background-color: #992337;
+}
+.add-mrgn{
+    margin-bottom: 20px;
+}
