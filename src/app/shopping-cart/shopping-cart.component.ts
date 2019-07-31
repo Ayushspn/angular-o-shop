@@ -17,25 +17,11 @@ export class ShoppingCartComponent implements OnInit {
   ngOnInit() {
     this.products$ = this.shoppingCartService.getProdcucts().subscribe((products) => {
       this.products = products;
-      this.products.forEach(product => {
-        product.count = 0;
-        this.products.forEach((Insideproduct) => {
-          if (Insideproduct.id === product.id) {
-            product.count = product.count + 1;
-            const productTotalPrice = (+product.count) * (+product.price);
-            //console.log(productTotalPrice);
-            product.productTotalPrice = productTotalPrice;
-
-          }
-        });
-        if (this.maintainidsarray.indexOf(product.id) === -1) {
-          this.maintainArray.push(product);
-          this.productFinalCount = this.productFinalCount + product.productTotalPrice;
-          this.maintainidsarray.push(product.id);
-          console.log(this.productFinalCount);
-        }
-        
-      });
+        this.products.forEach((product) => {
+          const productPrice = +product.price * +product.count;
+          console.log(typeof productPrice);
+          this.productFinalCount = this.productFinalCount + productPrice;
+        })
     });
     
   }

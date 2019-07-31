@@ -13,13 +13,15 @@ export class ShoppingCartService {
   createCart(product) {
     this.authService.user$.switchMap((userLoggedIn) => {
       this.userDetails = userLoggedIn;
-      return this.db.list('/shopping-cart/' + userLoggedIn.uid).push(product);
+      return this.db.list('/shopping-cart/' + userLoggedIn.uid).set(product.id, product);
 
     })
       .subscribe((done) => {
         console.log('done', done);
       });
   }
+
+
   getProductCount(): Observable<any> {
     return this.productCountSubject.asObservable();
   }
@@ -33,6 +35,19 @@ export class ShoppingCartService {
       return this.db.list('/shopping-cart/' + this.userDetails.uid).valueChanges();
 
     });
+  }
+
+  removeProduct(product) {
+    console.log(product);
+    this.authService.user$.switchMap((userLoggedIn) => {
+      this.userDetails = userLoggedIn;
+      return this.db.list('/shopping-cart/' + userLoggedIn.uid).remove(product.id);
+
+    })
+      .subscribe((done) => {
+        console.log('done', done);
+      });
+
   }
 
 

@@ -10,5 +10,12 @@
             class="btn btn-primary btn-block"
             (click) ="addToCart(product)"
             >Add To Cart</button>
+            <button 
+            class="btn btn-danger btn-block"
+            (click) ="removeFromCart(product)"
+            >Remove From Cart</button>
+    </div>
+    <div *ngIf ="product.showError">
+        <p>Product Count can not be zero</p>
     </div>
 </div>

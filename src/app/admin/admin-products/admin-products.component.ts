@@ -20,7 +20,6 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   }
 
   serachProduct(serachQuery) {
-    console.log(this.filterderProducts);
     if (serachQuery) {
       this.filterderProducts = this.products.filter((product) => {
         return product.title.includes(serachQuery);
@@ -28,7 +27,6 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
     } else {
       this.filterderProducts = this.products;
     }
-    console.log(this.filterderProducts);
   }
 
   ngOnDestroy() {

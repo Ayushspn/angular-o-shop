@@ -11,6 +11,7 @@ export class ProductsFilterComponent implements OnInit {
   @Output() categoryEventEmitter = new EventEmitter();
   categories$;
   categories;
+  trackIndex = 0;
   constructor(private categoryService: CategoryService) { }
 
   ngOnInit() {
@@ -18,7 +19,8 @@ export class ProductsFilterComponent implements OnInit {
         this.categories = catogries;
     });
   }
-  filterProducts(selectedCategory) {
+  filterProducts(selectedCategory, i) {
+    this.trackIndex = i;
     this.categoryEventEmitter.emit(selectedCategory);
   }
 }

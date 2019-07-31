@@ -2,3 +2,7 @@
     position: fixed;
 top: 80px;
 }
+
+.filter-list-item{
+    cursor: pointer;
+}

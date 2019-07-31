@@ -10,7 +10,7 @@ import { ShoppingCartService } from '../shopping-cart.service';
   templateUrl: './bs-navbar.component.html',
   styleUrls: ['./bs-navbar.component.css']
 })
-export class BsNavbarComponent implements OnInit, DoCheck  {
+export class BsNavbarComponent implements OnInit{
   productCount$;
   productCount = 0;
   productCountArray = [];
@@ -21,16 +21,16 @@ export class BsNavbarComponent implements OnInit, DoCheck  {
     this.productCount$ =
       this.shoppingCartService.getProductCount().subscribe((count) => {
         if (count === 'increament') {
-          let getCount = localStorage.getItem('productCount') | 0;
+          let getCount = +(localStorage.getItem('productCount')) | 0;
           this.productCount = +getCount++;
-          localStorage.setItem('productCount', this.productCount);
-          this.count = localStorage.getItem('productCount') | '0';
+          localStorage.setItem('productCount', this.productCount.toString());
+          this.count = +(localStorage.getItem('productCount')) | 0;
         }
       });
   }
 
   ngDoCheck() {
-    const getCount = localStorage.getItem('productCount') | 0;
+    const getCount = +(localStorage.getItem('productCount')) | 0;
     this.count = +getCount |   0;
   }
   logOut() {
