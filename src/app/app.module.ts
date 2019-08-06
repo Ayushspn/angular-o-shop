@@ -15,7 +15,7 @@ import { OrederSuccessfulComponent } from './oreder-successful/oreder-successful
 import { MyOrderComponent } from './my-order/my-order.component';
 import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
-import { LoginComponent } from './login/login.component';
+
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { FormsModule } from '@angular/forms';
@@ -26,7 +26,7 @@ import { ProductsListComponent } from './products/products-list/products-list.co
 import { FilterRecordsPipe } from './filter-records.pipe';
 import { AngularFireStorageModule  } from 'angularfire2/storage';
 import { SignupComponent } from './auth/signup/signup.component';
-
+import {LoginComponent} from './auth/login/login.component';
 import { NgFlashMessagesModule } from 'ng-flash-messages';
 
 @NgModule({

@@ -13,14 +13,18 @@ export class AuthService {
     this.user$ = afAuth.authState;
   }
 
-  login() {
-    const returnUrl = this.route.snapshot.paramMap.get('returnUrl') || '/';
-    localStorage.setItem('returnUrl', returnUrl);
-    const provider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithRedirect(provider);
-  }
+  // login() {
+  //   const returnUrl = this.route.snapshot.paramMap.get('returnUrl') || '/';
+  //   localStorage.setItem('returnUrl', returnUrl);
+  //   const provider = new firebase.auth.GoogleAuthProvider();
+  //   firebase.auth().signInWithRedirect(provider);
+  // }
   createUserInFirebase(userDeatails){
-    return firebase.auth().createUserWithEmailAndPassword(userDeatails.email, userDeatails.password)
+    return firebase.auth().createUserWithEmailAndPassword(userDeatails.email, userDeatails.password);
+  }
+
+  loginInUrAccnt(userDeatails) {
+    return firebase.auth().signInWithEmailAndPassword(userDeatails.email, userDeatails.password)
   }
 
   logOut() {

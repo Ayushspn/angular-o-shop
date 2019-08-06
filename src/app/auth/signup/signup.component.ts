@@ -21,28 +21,34 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
   }
   submitForm(formDetails) {
-    console.log(formDetails);
-    if(formDetails.confirmPassword !== formDetails.password){
-      this.passwordMatch = true;
-      return 
+    if(formDetails){
+      if(formDetails.confirmPassword !== formDetails.password){
+        this.passwordMatch = true;
+        return 
+      }
+      this.passwordMatch = false;
+      this.authService.createUserInFirebase(formDetails).then((userDetails)=> {
+        if(userDetails) {
+          this.ngFlashMessageService.showFlashMessage({
+            messages: ["User Signed in successfully"], 
+            dismissible: true, 
+            timeout: false,
+            type: 'success'
+          });
+          
+        }
+        
+      })
+      .catch((error) => {
+        this.ngFlashMessageService.showFlashMessage({
+          messages: [error.message], 
+          dismissible: true, 
+          timeout: false,
+          type: 'danger'
+        });
+      })
     }
-    this.passwordMatch = false;
-    this.authService.createUserInFirebase(formDetails).then((userDetails)=> {
-      this.ngFlashMessageService.showFlashMessage({
-        messages: ["User Signed in successfully"], 
-        dismissible: true, 
-        timeout: false,
-        type: 'success'
-      });
-    })
-    .catch((error) => {
-      this.ngFlashMessageService.showFlashMessage({
-        messages: [error.message], 
-        dismissible: true, 
-        timeout: false,
-        type: 'danger'
-      });
-    })
+    formDetails.reset();
   }
 
   cancelForm(formDetails) {
