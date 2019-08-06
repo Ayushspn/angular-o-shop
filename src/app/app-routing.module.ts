@@ -14,7 +14,7 @@ import { AuthGaurdService } from './auth-gaurd.service';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 
 const routes: Routes = [
-  {path : '', component : ProdutsComponent},
+  {path : '', component : HomeComponent},
   {path : 'products', component : ProdutsComponent},
   {path : 'shopping-cart', component : ShoppingCartComponent},
   {path : 'my/orders', component : MyOrderComponent, canActivate : [AuthGaurdService]},

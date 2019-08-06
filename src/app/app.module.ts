@@ -24,6 +24,8 @@ import {DataTableModule} from 'angular-6-datatable';
 import { ProductsFilterComponent } from './products/products-filter/products-filter.component';
 import { ProductsListComponent } from './products/products-list/products-list.component';
 import { FilterRecordsPipe } from './filter-records.pipe';
+import { AngularFireStorageModule  } from 'angularfire2/storage';
+import { SignupComponent } from './auth/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,8 @@ import { FilterRecordsPipe } from './filter-records.pipe';
     ProductFormComponent,
     ProductsFilterComponent,
     ProductsListComponent,
-    FilterRecordsPipe
+    FilterRecordsPipe,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +55,8 @@ import { FilterRecordsPipe } from './filter-records.pipe';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     CustomFormsModule,
-    DataTableModule
+    DataTableModule,
+    AngularFireStorageModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,21 +1,20 @@
-<div class="card" style="width: 20rem;">
-    <img src="{{product.imageUrl}}" class="card-img-top" alt="image is not loaded">
+<p *ngIf = !product.prodcutAvliablity>Currently Product is not avliable</p>
+<div class="card" style="width: 20rem;" [ngClass] ="{applyOpacity : product.prodcutAvliablity, 'removeOpacity' : !product.prodcutAvliablity }">
+    <img src="{{product.productImagePath}}" class="card-img-top" alt="image is not loaded">
     <div class="card-body">
         <h5 class="card-title">{{product.title}}</h5>
         <p class="card-text">{{product.price | currency : 'USD': true}}</p>
-
+        <p class="card-text">{{product.description}}</p>
     </div>
     <div class="card-footer">
             <button 
             class="btn btn-primary btn-block"
             (click) ="addToCart(product)"
+            
             >Add To Cart</button>
             <button 
             class="btn btn-danger btn-block"
             (click) ="removeFromCart(product)"
             >Remove From Cart</button>
-    </div>
-    <div *ngIf ="product.showError">
-        <p>Product Count can not be zero</p>
     </div>
 </div>

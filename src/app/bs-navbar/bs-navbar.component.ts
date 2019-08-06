@@ -18,15 +18,20 @@ export class BsNavbarComponent implements OnInit{
   constructor(public authService: AuthService, private shoppingCartService: ShoppingCartService) {
   }
   ngOnInit() {
+    
     this.productCount$ =
-      this.shoppingCartService.getProductCount().subscribe((count) => {
-        if (count === 'increament') {
-          let getCount = +(localStorage.getItem('productCount')) | 0;
-          this.productCount = +getCount++;
-          localStorage.setItem('productCount', this.productCount.toString());
-          this.count = +(localStorage.getItem('productCount')) | 0;
-        }
+      this.shoppingCartService.getProductCount().subscribe((produtObject) => {
+        let productCounts = 0;
+        produtObject.forEach((prductObjectElement : {count ?: number}) => {
+          if(prductObjectElement && prductObjectElement.count) {
+            //console.log('element',element);
+            productCounts = productCounts + prductObjectElement.count;
+          }
+          
+        });
+        this.productCount = productCounts; 
       });
+      
   }
 
   ngDoCheck() {

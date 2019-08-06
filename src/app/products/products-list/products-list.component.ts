@@ -20,7 +20,7 @@ export class ProductsListComponent implements OnInit {
   }
 
   addToCart(product) {
-    product.showError = false;
+    product.disabled = true;
     !product.count ? product.count =1 : product.count ++;
     product = product;
     this.productCountArray.push(product.id);
@@ -32,15 +32,13 @@ export class ProductsListComponent implements OnInit {
     const newCount = 0;
     this.savedProducts.forEach((savedProduct) => {
       if(savedProduct.id === product.id && product.count > 0){
-        product.showError = false;
+        product.disabled = false;
         product.count = +product.count -1 ;
       }
       else{
         product.showError = true
       }
     })
-    
-   // product.count===0 ? product.count =0 : product.count --;
     this.shoppingCartService.createCart(product);
   }
 }

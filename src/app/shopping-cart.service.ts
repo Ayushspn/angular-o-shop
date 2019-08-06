@@ -13,7 +13,15 @@ export class ShoppingCartService {
   createCart(product) {
     this.authService.user$.switchMap((userLoggedIn) => {
       this.userDetails = userLoggedIn;
-      return this.db.list('/shopping-cart/' + userLoggedIn.uid).set(product.id, product);
+      //product.count = product.count + 1;
+      if(product.count == 0 || ! product.count){
+        return this.db.list('/shopping-cart/' + userLoggedIn.uid + '/' + product.id).remove();
+      }
+      else{
+        return this.db.list('/shopping-cart/' + userLoggedIn.uid).set(product.id, product) ;
+      }
+        
+      
 
     })
       .subscribe((done) => {
@@ -22,8 +30,13 @@ export class ShoppingCartService {
   }
 
 
-  getProductCount(): Observable<any> {
-    return this.productCountSubject.asObservable();
+  getProductCount() {
+    //return this.productCountSubject.asObservable();
+    return this.authService.user$.switchMap((userLoggedIn) => {
+      this.userDetails = userLoggedIn;
+      return this.db.list('/shopping-cart/' + this.userDetails.uid).valueChanges();
+
+    });
   }
   sendProductCount(productCount: string) {
     this.productCountSubject.next(productCount);

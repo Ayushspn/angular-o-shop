@@ -17,7 +17,7 @@
             <th></th>
         </tr>
     </thead>
-    <tbody *ngIf ="filterderProducts">
+    <tbody *ngIf ="filterderProducts && filterderProducts.length>0">
         <tr *ngFor ="let product of filterderProducts">
             <td>{{product.title}}</td>
             <td>{{product.price}}</td>
@@ -27,4 +27,4 @@
         </tr>
     </tbody>
 </table>
-<p *ngIf ="!filterderProducts">There is no Product</p>
+<p *ngIf ="filterderProducts.length == 0">There is no Product for this title</p>

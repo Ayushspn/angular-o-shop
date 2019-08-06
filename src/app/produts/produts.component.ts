@@ -28,7 +28,6 @@ export class ProdutsComponent implements OnInit, OnDestroy {
     category ? this.filteredProducts = this.products.filter((product) => {
         return product.category.includes(category.id);
     }) : this.filteredProducts = this.products;
-    console.log(this.filterProducts);
   }
   ngOnDestroy() {
     this.products$.unsubscribe();

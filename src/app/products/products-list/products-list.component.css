@@ -5,3 +5,10 @@
 .card-footer {
     padding: 0;
 }
+
+.applyOpacity{
+    opacity : 1
+}
+.removeOpacity{
+    opacity : .3;
+}
