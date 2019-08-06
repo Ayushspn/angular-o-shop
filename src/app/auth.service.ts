@@ -19,6 +19,9 @@ export class AuthService {
     const provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithRedirect(provider);
   }
+  createUserInFirebase(userDeatails){
+    return firebase.auth().createUserWithEmailAndPassword(userDeatails.email, userDeatails.password)
+  }
 
   logOut() {
     this.afAuth.auth.signOut();

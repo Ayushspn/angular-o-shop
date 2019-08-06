@@ -27,6 +27,8 @@ import { FilterRecordsPipe } from './filter-records.pipe';
 import { AngularFireStorageModule  } from 'angularfire2/storage';
 import { SignupComponent } from './auth/signup/signup.component';
 
+import { NgFlashMessagesModule } from 'ng-flash-messages';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,7 +58,8 @@ import { SignupComponent } from './auth/signup/signup.component';
     AngularFireAuthModule,
     CustomFormsModule,
     DataTableModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    NgFlashMessagesModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

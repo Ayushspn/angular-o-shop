@@ -1,6 +1,8 @@
 
 <p *ngIf ="passwordMatch" class="alert alert-danger"> Password and Confirm Password do not match</p>
+<ng-flash-message></ng-flash-message>
 <form (ngSubmit)=submitForm(registrationForm.value) #registrationForm="ngForm">
+        
     <div class="form-group">
         <label for="email">Email address:</label>
         <input type="text" class="form-control" id="email" name="email" #Formemail="ngModel" ngModel required email>
