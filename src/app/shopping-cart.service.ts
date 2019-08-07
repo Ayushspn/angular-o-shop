@@ -13,7 +13,7 @@ export class ShoppingCartService {
   createCart(product) {
     this.authService.user$.switchMap((userLoggedIn) => {
       this.userDetails = userLoggedIn;
-      //product.count = product.count + 1;
+      const userId = localStorage.getItem('userId');
       if(product.count == 0 || ! product.count){
         return this.db.list('/shopping-cart/' + userLoggedIn.uid + '/' + product.id).remove();
       }

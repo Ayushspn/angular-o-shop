@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../auth.service';
-
+import {Router} from '@angular/router'
 @Component({
   selector: 'login-app',
   templateUrl: './login.component.html',
@@ -10,6 +10,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService : AuthService,
+    private router : Router
   ) { }
 
   ngOnInit() {
@@ -20,7 +21,9 @@ export class LoginComponent implements OnInit {
     if(formDetails){
       this.authService.loginInUrAccnt(formDetails).then((userDetails)=> {
         if(userDetails) {
-          console.log('userDetails', userDetails);
+          //console.log('userDetails', userDetails);
+          localStorage.setItem('userId',userDetails.uid );
+          this.router.navigate(['/products']);
         }
         
       })

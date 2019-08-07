@@ -13,10 +13,12 @@ import { AuthGaurdService } from './auth-gaurd.service';
 
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 
+import {ForgetPasswordComponent} from './auth/forget-password/forget-password.component';
 const routes: Routes = [
   {path : '', component : HomeComponent},
   {path : 'products', component : ProdutsComponent},
   {path : 'shopping-cart', component : ShoppingCartComponent},
+  {path : 'forget-password', component : ForgetPasswordComponent},
   {path : 'my/orders', component : MyOrderComponent, canActivate : [AuthGaurdService]},
   {path : 'check-out', component : CheckOutComponent, canActivate : [AuthGaurdService]},
   {path : 'order-success', component : OrederSuccessfulComponent, canActivate : [AuthGaurdService]},

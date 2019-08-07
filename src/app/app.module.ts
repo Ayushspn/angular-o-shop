@@ -28,6 +28,7 @@ import { AngularFireStorageModule  } from 'angularfire2/storage';
 import { SignupComponent } from './auth/signup/signup.component';
 import {LoginComponent} from './auth/login/login.component';
 import { NgFlashMessagesModule } from 'ng-flash-messages';
+import { ForgetPasswordComponent } from './auth/forget-password/forget-password.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { NgFlashMessagesModule } from 'ng-flash-messages';
     ProductsFilterComponent,
     ProductsListComponent,
     FilterRecordsPipe,
-    SignupComponent
+    SignupComponent,
+    ForgetPasswordComponent
   ],
   imports: [
     BrowserModule,
