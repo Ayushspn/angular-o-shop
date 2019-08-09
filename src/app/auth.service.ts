@@ -13,12 +13,9 @@ export class AuthService {
     this.user$ = afAuth.authState;
   }
 
-  // login() {
-  //   const returnUrl = this.route.snapshot.paramMap.get('returnUrl') || '/';
-  //   localStorage.setItem('returnUrl', returnUrl);
-  //   const provider = new firebase.auth.GoogleAuthProvider();
-  //   firebase.auth().signInWithRedirect(provider);
-  // }
+ forgetFirebasePassword(email) : Promise<any>{
+  return firebase.auth().sendPasswordResetEmail(email);
+ }
   createUserInFirebase(userDeatails){
     return firebase.auth().createUserWithEmailAndPassword(userDeatails.email, userDeatails.password);
   }
@@ -26,9 +23,10 @@ export class AuthService {
   loginInUrAccnt(userDeatails) {
     return firebase.auth().signInWithEmailAndPassword(userDeatails.email, userDeatails.password)
   }
-
+  userLoggedIn() {
+    return firebase.auth();
+  }
   logOut() {
-    this.afAuth.auth.signOut();
-    localStorage.removeItem('user');
+    return firebase.auth().signOut();
   }
 }

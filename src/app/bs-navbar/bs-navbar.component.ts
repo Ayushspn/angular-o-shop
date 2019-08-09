@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase';
 import { Observable } from 'rxjs';
@@ -14,11 +15,17 @@ export class BsNavbarComponent implements OnInit{
   productCount$;
   productCount = 0;
   productCountArray = [];
+  loggedInUser = false;
   count = 0;
-  constructor(public authService: AuthService, private shoppingCartService: ShoppingCartService) {
+  constructor(public authService: AuthService, 
+    private shoppingCartService: ShoppingCartService, 
+    private router : Router) {
   }
   ngOnInit() {
-    
+    this.authService.userLoggedIn().onAuthStateChanged((user) => {
+      user ? this.loggedInUser = true : this.loggedInUser = false;
+      console.log(this.loggedInUser);
+    })
     this.productCount$ =
       this.shoppingCartService.getProductCount().subscribe((produtObject) => {
         let productCounts = 0;
@@ -34,12 +41,14 @@ export class BsNavbarComponent implements OnInit{
       
   }
 
-  ngDoCheck() {
-    const getCount = +(localStorage.getItem('productCount')) | 0;
-    this.count = +getCount |   0;
-  }
-  logOut() {
-    this.authService.logOut();
+  logOutFromFireBase() {
+    debugger
+    this.authService.logOut().then((loggedOut) => {
+      if(!loggedOut){
+        debugger
+        this.router.navigate(['/']);
+      }
+    })
   }
 
 }

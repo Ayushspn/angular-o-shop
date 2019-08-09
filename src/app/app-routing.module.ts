@@ -10,12 +10,13 @@ import { AdminProductsComponent } from './admin/admin-products/admin-products.co
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 import { MyOrderComponent } from './my-order/my-order.component';
 import { AuthGaurdService } from './auth-gaurd.service';
-
+import { SignupComponent } from './auth/signup/signup.component';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 
 import {ForgetPasswordComponent} from './auth/forget-password/forget-password.component';
 const routes: Routes = [
   {path : '', component : HomeComponent},
+  {path :"sign-up", component: SignupComponent },
   {path : 'products', component : ProdutsComponent},
   {path : 'shopping-cart', component : ShoppingCartComponent},
   {path : 'forget-password', component : ForgetPasswordComponent},

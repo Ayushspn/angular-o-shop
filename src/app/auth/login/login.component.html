@@ -1,5 +1,5 @@
 
-<form (ngSubmit)=login(LoginForm.value) #LoginForm="ngForm">
+<form (ngSubmit)=login(LoginForm.value) #LoginForm="ngForm" autocomplete="off">
         
     <div class="form-group">
         <label for="login-email">Email address:</label>
@@ -21,6 +21,9 @@
     <div class="form-group">
        <a [routerLink] ="['/forget-password']">Forget Password?</a>
     </div>
+    <div class="form-group">
+           <span>New User</span> <a [routerLink] ="['/sign-up']">Forget Password?</a>
+         </div>
     <button type="submit" class="btn btn-primary margn-right" [disabled] ="LoginForm.invalid">Submit</button>
     <button type="button" class="btn btn-dark" (click) ="cancelForm(LoginForm)">Cancel</button>
 </form>

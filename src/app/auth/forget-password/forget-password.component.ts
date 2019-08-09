@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from '../../auth.service';
+import { NgFlashMessageService } from 'ng-flash-messages';
 
 @Component({
   selector: 'app-forget-password',
@@ -7,9 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ForgetPasswordComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService: AuthService, 
+    private ngFlashMessageService: NgFlashMessageService) { }
 
   ngOnInit() {
   }
-
+  submitForgetForm(email : string){
+    this.authService.forgetFirebasePassword(email.emailForget)
+    .then((message) => {
+      this.ngFlashMessageService.showFlashMessage({
+        messages: ["Please check you email"], 
+        dismissible: true, 
+        timeout: false,
+        type: 'success'
+      });
+    })
+    .catch((error) => {
+      this.ngFlashMessageService.showFlashMessage({
+        messages: [error.message], 
+        dismissible: true, 
+        timeout: false,
+        type: 'error'
+      });
+    })
+  }
 }
