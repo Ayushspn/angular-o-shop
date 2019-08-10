@@ -2,3 +2,17 @@
     cursor: pointer;
 }
 
+.mr-auto{
+    position: absolute;
+    right: 50px;
+}
+
+.dropdown-men-chng-postion{
+    position: absolute;
+    right: 10px !important;
+}
+
+.navbar-brand{
+    cursor: pointer;
+}
+

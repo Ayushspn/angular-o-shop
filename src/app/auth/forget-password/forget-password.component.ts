@@ -15,7 +15,7 @@ export class ForgetPasswordComponent implements OnInit {
   ngOnInit() {
   }
   submitForgetForm(email : string){
-    this.authService.forgetFirebasePassword(email.emailForget)
+    this.authService.forgetFirebasePassword(email)
     .then((message) => {
       this.ngFlashMessageService.showFlashMessage({
         messages: ["Please check you email"], 

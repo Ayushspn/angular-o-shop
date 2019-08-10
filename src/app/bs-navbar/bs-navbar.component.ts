@@ -45,10 +45,15 @@ export class BsNavbarComponent implements OnInit{
     debugger
     this.authService.logOut().then((loggedOut) => {
       if(!loggedOut){
-        debugger
+        localStorage.removeItem('userId');
         this.router.navigate(['/']);
       }
     })
+  }
+
+  oShopRedirect() : void {
+    const loggedInUser = localStorage.getItem('userId');
+    loggedInUser ? this.router.navigate(['/products']) : this.router.navigate(['/']);
   }
 
 }

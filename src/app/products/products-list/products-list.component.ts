@@ -24,7 +24,9 @@ export class ProductsListComponent implements OnInit {
     !product.count ? product.count =1 : product.count ++;
     product = product;
     this.productCountArray.push(product.id);
-    this.shoppingCartService.createCart(product);
+    this.shoppingCartService.createCart(product).then((data) => {
+      console.log('product has beeen addedd');
+    })
     this.shoppingCartService.sendProductCount('increament');
   }
 

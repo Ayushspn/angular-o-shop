@@ -10,7 +10,7 @@ import { AngularFireStorage } from 'angularfire2/storage';
 })
 export class AdminProductsComponent implements OnInit, OnDestroy {
   products: any[];
-  filterderProducts: any[];
+  filterderProducts: any[] = [];
   productSubscription: Subscription;
   constructor(private productService: ProductService, private afStoarge : AngularFireStorage) { }
 

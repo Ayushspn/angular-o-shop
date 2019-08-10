@@ -10,23 +10,18 @@ export class ShoppingCartService {
   private productCountSubject = new Subject<string>();
   constructor(private db: AngularFireDatabase, private authService: AuthService) { }
   userDetails;
+  
+
+
   createCart(product) {
-    this.authService.user$.switchMap((userLoggedIn) => {
-      this.userDetails = userLoggedIn;
-      const userId = localStorage.getItem('userId');
+      const userId = (localStorage.getItem('userId'));
       if(product.count == 0 || ! product.count){
-        return this.db.list('/shopping-cart/' + userLoggedIn.uid + '/' + product.id).remove();
+        return this.db.list('/shopping-cart/' + userId + '/' + product.id).remove();
       }
       else{
-        return this.db.list('/shopping-cart/' + userLoggedIn.uid).set(product.id, product) ;
+        return this.db.list('/shopping-cart/' + userId).set(product.id, product) ;
       }
-        
       
-
-    })
-      .subscribe((done) => {
-        console.log('done', done);
-      });
   }
 
 
@@ -43,24 +38,13 @@ export class ShoppingCartService {
   }
 
   getProdcucts() {
-    return this.authService.user$.switchMap((userLoggedIn) => {
-      this.userDetails = userLoggedIn;
-      return this.db.list('/shopping-cart/' + this.userDetails.uid).valueChanges();
-
-    });
+    const userId = (localStorage.getItem('userId'));
+      return this.db.list('/shopping-cart/' + userId).valueChanges();
   }
 
   removeProduct(product) {
-    console.log(product);
-    this.authService.user$.switchMap((userLoggedIn) => {
-      this.userDetails = userLoggedIn;
-      return this.db.list('/shopping-cart/' + userLoggedIn.uid).remove(product.id);
-
-    })
-      .subscribe((done) => {
-        console.log('done', done);
-      });
-
+    const userId = (localStorage.getItem('userId'));
+      return this.db.list('/shopping-cart/' + userId).remove(product.id);
   }
 
 

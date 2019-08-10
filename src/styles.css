@@ -14,3 +14,6 @@ body {
     max-width: 40rem;
     margin: 0 auto;
 }
+.card-img-top{
+    max-height: 200px !important;
+}
