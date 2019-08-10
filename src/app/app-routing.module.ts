@@ -26,7 +26,7 @@ const routes: Routes = [
   {path : 'admin/products/new', component : ProductFormComponent, canActivate : [AuthGaurdService]},
   {path : 'admin/products/:id', component : ProductFormComponent, canActivate : [AuthGaurdService]},
   {path : 'admin/products', component : AdminProductsComponent, canActivate : [AuthGaurdService]},
-  {path : 'admin/orders', component : AdminOrdersComponent, canActivate : [AuthGaurdService]}
+  {path : 'profile', component : AdminOrdersComponent}
 ];
 
 @NgModule({

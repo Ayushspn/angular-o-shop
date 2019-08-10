@@ -16,3 +16,14 @@
     cursor: pointer;
 }
 
+.nav-item-user{
+    padding-top: 8px;
+}
+.fa-user-width{
+    font-size: 25px;
+}
+
+.nav-item-shopping-cart{
+    margin-right: 10px;
+}
+

@@ -10,11 +10,16 @@
             <!-- <li class="nav-item active">
                 <a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a>
             </li> -->
-            <li class="nav-item">
+            <li class="nav-item nav-item-shopping-cart">
                 <a class="nav-link" routerLink="/shopping-cart">Shopping Cart {{productCount}}</a>
+                
             </li>
+
+            <li class="nav-item nav-item-user">
+                    <i class="fa fa-user fa-user-width" aria-hidden="true"></i>
+                </li>
             <li class="nav-item" *ngIf = "!(authService.user$| async) as user">
-                <a class="nav-link" routerLink="/login">Login</a>
+                    <a class="nav-link" routerLink="/login">Login</a>
             </li>
             <li class="nav-item dropdown" ngbDropdown>
                 <a ngbDropdownToggle class="nav-link dropdown-toggle"  id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
@@ -22,7 +27,7 @@
                     aria-expanded="false">{{user.displayName}}</a>
                 <div ngbDropdownMenu class="dropdown-menu dropdown-men-chng-postion" aria-labelledby="dropdown01">
                     <a class="dropdown-item" routerLink="/my/orders">My Orders</a>
-                    <a class="dropdown-item" routerLink="/admin/orders">Manage Orders</a>
+                    <a class="dropdown-item" routerLink="/profile">Profile</a>
                     <a class="dropdown-item" routerLink="/admin/products">Manage Products</a>
                     <a class="dropdown-item" (click) ="logOutFromFireBase()">Logout</a>
                 </div>

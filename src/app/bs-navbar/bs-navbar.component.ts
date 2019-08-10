@@ -42,7 +42,6 @@ export class BsNavbarComponent implements OnInit{
   }
 
   logOutFromFireBase() {
-    debugger
     this.authService.logOut().then((loggedOut) => {
       if(!loggedOut){
         localStorage.removeItem('userId');

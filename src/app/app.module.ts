@@ -29,6 +29,7 @@ import { SignupComponent } from './auth/signup/signup.component';
 import {LoginComponent} from './auth/login/login.component';
 import { NgFlashMessagesModule } from 'ng-flash-messages';
 import { ForgetPasswordComponent } from './auth/forget-password/forget-password.component';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { ForgetPasswordComponent } from './auth/forget-password/forget-password.
     CustomFormsModule,
     DataTableModule,
     AngularFireStorageModule,
-    NgFlashMessagesModule.forRoot()
+    NgFlashMessagesModule.forRoot(),
+    AngularFontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
