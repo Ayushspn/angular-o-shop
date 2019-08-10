@@ -1,1 +1,38 @@
-<p>admin-orders works!</p>
+<form>
+    <div class="row">
+
+        <div class="col-md-6">
+
+            <label for="file">Upload Profile Image <span class="red-start">*</span>:</label>
+            <input type="file" (change)="uploadProductImage($event)" accept=".png,.jpg" />
+            <div class="mgrn-botton">
+                <progress max="100" [value]="(uploadProgress | async)" class="progress-bar chgn-width"
+                    min="0"></progress>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="col-md-12 mrgn-bottom">
+                <input type="text" class="form-control" placeholder="First Name">
+            </div>
+            <div class="col-md-12 mrgn-bottom">
+                <input type="text" class="form-control" placeholder="Last Name">
+            </div>
+            <div class="col-md-12 mrgn-bottom">
+                <textarea type="text" class="form-control" placeholder="Address"></textarea>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-6 mrgn-bottom">
+            <input type="number" placeholder="Phone Number" class="form-control">
+        </div>
+        <div class="col-md-6 mrgn-bottom">
+            <p>drop down</p>
+        </div>
+    </div>
+    <div class="row">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button class="btn btn-default">Cancel</button>
+    </div>
+</form>
