@@ -1,38 +1,65 @@
-<form>
+<form #profileForm="ngForm" (ngSubmit)="profileSubmit(profileForm)" autocomplete ="off">
     <div class="row">
 
         <div class="col-md-6">
 
             <label for="file">Upload Profile Image <span class="red-start">*</span>:</label>
             <input type="file" (change)="uploadProductImage($event)" accept=".png,.jpg" />
-            <div class="mgrn-botton">
-                <progress max="100" [value]="(uploadProgress | async)" class="progress-bar chgn-width"
-                    min="0"></progress>
-            </div>
+            
+            
         </div>
         <div class="col-md-6">
             <div class="col-md-12 mrgn-bottom">
-                <input type="text" class="form-control" placeholder="First Name">
+                <input type="text" class="form-control" placeholder="First Name" ngModel name="firstName" #profileFName = "ngModel" required>
+                <div class="alert alert-danger" *ngIf="profileFName.touched && profileFName.invalid">
+                        <div *ngIf="profileFName.errors.required">First Name is required</div>
+                        
+                    </div>
             </div>
             <div class="col-md-12 mrgn-bottom">
-                <input type="text" class="form-control" placeholder="Last Name">
+                <input type="text" class="form-control" placeholder="Last Name" ngModel name="lastName" #profileSName = "ngModel" required>
+                <div class="alert alert-danger" *ngIf="profileSName.touched && profileSName.invalid">
+                        <div *ngIf="profileSName.errors.required">Second Name is required</div>
+                        
+                    </div>
             </div>
             <div class="col-md-12 mrgn-bottom">
-                <textarea type="text" class="form-control" placeholder="Address"></textarea>
+                <textarea type="text" class="form-control" placeholder="Address" ngModel name="address"
+                #profileAdress = "ngModel" required></textarea>
+                <div class="alert alert-danger" *ngIf="profileAdress.touched && profileAdress.invalid">
+                        <div *ngIf="profileAdress.errors.required">Address is required</div>
+                        
+                    </div>
+                
             </div>
         </div>
 
     </div>
     <div class="row">
-        <div class="col-md-6 mrgn-bottom">
-            <input type="number" placeholder="Phone Number" class="form-control">
+        <div class="col-md-6 mrgn-bottom mrgn-top">
+            <input type="number" placeholder="Phone Number" class="form-control" 
+            name ="phoneNumber" ngModel #profilePhNumber = "ngModel" required
+            pattern="[789][0-9]{9}">
+            <div class="alert alert-danger" *ngIf="profilePhNumber.touched && profilePhNumber.invalid">
+                    <div *ngIf="profilePhNumber.errors.required">Phone Number is requierd</div>
+                    <div *ngIf="profilePhNumber.errors.pattern">Please provide a number having 10 digit starting with '9' or '8' or '7'</div>
+                </div>
         </div>
         <div class="col-md-6 mrgn-bottom">
-            <p>drop down</p>
+            <label>Select Gender</label>
+            <select class="form-control" (change)="selectGender($event)" name ="selectGender" ngModel #profileGender = "ngModel" required>
+                <option [ngValue]="gender.name" *ngFor="let gender of genderList">
+                    {{gender.name}}
+                </option>
+            </select>
+            <div class="alert alert-danger" *ngIf="profileGender.touched && profileGender.invalid">
+                    <div *ngIf="profileGender.errors.required">Please Select Your gender</div>
+                    
+                </div>
         </div>
     </div>
     <div class="row">
-        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="submit" class="btn btn-primary" [disabled] ="profileForm.invalid || disableBtn">Save</button>
         <button class="btn btn-default">Cancel</button>
     </div>
 </form>
