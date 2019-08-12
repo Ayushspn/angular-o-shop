@@ -3,13 +3,17 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   user$: Observable<firebase.User>;
-  constructor(private afAuth: AngularFireAuth, private activatedRoute: Router, private route: ActivatedRoute) {
+  constructor(private afAuth: AngularFireAuth, 
+    private activatedRoute: Router, 
+    private route: ActivatedRoute, 
+    private db: AngularFireDatabase) {
     this.user$ = afAuth.authState;
   }
 
@@ -28,5 +32,16 @@ export class AuthService {
   }
   logOut() {
     return firebase.auth().signOut();
+  }
+  getLoggedInUser(){
+    return this.db.list(`/users`)
+    .snapshotChanges()
+    .map(actions => {
+      return actions.map(a => {
+        const data = a.payload.val();
+        const id = a.key;
+        return { id, ...data };
+      });
+    });
   }
 }
