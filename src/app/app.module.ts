@@ -30,6 +30,7 @@ import {LoginComponent} from './auth/login/login.component';
 import { NgFlashMessagesModule } from 'ng-flash-messages';
 import { ForgetPasswordComponent } from './auth/forget-password/forget-password.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { DeliveryComponent } from './delivery/delivery.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     ProductsListComponent,
     FilterRecordsPipe,
     SignupComponent,
-    ForgetPasswordComponent
+    ForgetPasswordComponent,
+    DeliveryComponent
   ],
   imports: [
     BrowserModule,

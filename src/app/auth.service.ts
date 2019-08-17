@@ -34,7 +34,8 @@ export class AuthService {
     return firebase.auth().signOut();
   }
   getLoggedInUser(){
-    return this.db.list(`/users`)
+    const userId = localStorage.getItme('userId');
+    return this.db.list(`/users${userId}`)
     .snapshotChanges()
     .map(actions => {
       return actions.map(a => {

@@ -5,3 +5,11 @@
 .mrgn-top{
     margin-top: 30px;
 }
+
+.profile-image{
+    max-width: 150px;
+}
+
+.profile-image-container{
+    text-align: center;
+}

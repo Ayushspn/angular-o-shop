@@ -26,12 +26,10 @@ export class ShoppingCartService {
 
 
   getProductCount() {
-    //return this.productCountSubject.asObservable();
-    return this.authService.user$.switchMap((userLoggedIn) => {
-      this.userDetails = userLoggedIn;
-      return this.db.list('/shopping-cart/' + this.userDetails.uid).valueChanges();
+    const userId = localStorage.getItem('userId');
+      return this.db.list('/shopping-cart/' + userId).valueChanges();
 
-    });
+   
   }
   sendProductCount(productCount: string) {
     this.productCountSubject.next(productCount);

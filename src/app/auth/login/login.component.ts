@@ -8,7 +8,7 @@ import {ProfileService} from '../../service/profile.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  leggedInUserList = [];
+  leggedInUserList : any;
   constructor(
     private authService : AuthService,
     private router : Router,
@@ -16,24 +16,23 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.authService.getLoggedInUser().subscribe((loggedInUser) => {
-      this.leggedInUserList = loggedInUser;
-    })
+    
   }
 
 
   login(formDetails) {
+    debugger
     let navigationFlag = false;
     if(formDetails){
       this.authService.loginInUrAccnt(formDetails).then((userDetails)=> {
         if(userDetails) {
           localStorage.setItem('userId',userDetails.uid );
-          this.leggedInUserList.forEach((loggedInUser) => {
-            if(loggedInUser.id === userDetails.uid){
-              !loggedInUser.firstName ? navigationFlag = false : navigationFlag = true;
-            } 
-          });
-          navigationFlag ? this.router.navigate(['/products']) : this.router.navigate(['/profile'])
+          this.profileService.getLoggedInUser().subscribe((loggedInUser) => {
+            this.leggedInUserList = loggedInUser;
+            !this.leggedInUserList.firstName ? navigationFlag =  false : navigationFlag = true;
+            navigationFlag ? this.router.navigate(['/products']) : this.router.navigate(['/profile'])
+          })
+          
         }
         
       })

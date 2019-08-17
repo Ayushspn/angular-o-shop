@@ -1,4 +1,5 @@
 import { Component, OnInit , Input} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-check-out',
@@ -7,9 +8,15 @@ import { Component, OnInit , Input} from '@angular/core';
 })
 export class CheckOutComponent implements OnInit {
   @Input() finalProductPrice: number;
-  constructor() { }
+  constructor(
+    private router : Router
+  ) { }
 
   ngOnInit() {
+  }
+
+  redirectToCheckOut() : void {
+    this.router.navigate(['/delivery-address'])
   }
 
 }

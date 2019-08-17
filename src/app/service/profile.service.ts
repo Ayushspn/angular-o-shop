@@ -16,8 +16,9 @@ export class ProfileService {
     return this.db.object('/users/' + userId).update(profileObject);
   }
 
-  getProfile(profileObject){
-    const userId = localStorage.getItem('userId')
+  getLoggedInUser(){
+    const userId = localStorage.getItem('userId');
     return this.db.object('/users/' + userId).valueChanges();
+    
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import {AuthService} from '../../auth.service';
 import { NgFlashMessageService } from 'ng-flash-messages';
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -10,7 +11,8 @@ export class SignupComponent implements OnInit {
   passwordMatch = false;
   constructor(
     private authService : AuthService,
-    private ngFlashMessageService: NgFlashMessageService
+    private ngFlashMessageService: NgFlashMessageService,
+    private router : Router
   ) {
    }
 
@@ -32,12 +34,12 @@ export class SignupComponent implements OnInit {
           this.ngFlashMessageService.showFlashMessage({
             messages: ["User Signed in successfully"], 
             dismissible: true, 
-            timeout: false,
+            timeout: true,
             type: 'success'
           });
           
         }
-        
+      
       })
       .catch((error) => {
         this.ngFlashMessageService.showFlashMessage({
@@ -48,7 +50,7 @@ export class SignupComponent implements OnInit {
         });
       })
     }
-    formDetails.reset();
+    this.router.navigate(['/']);
   }
 
   cancelForm(formDetails) {

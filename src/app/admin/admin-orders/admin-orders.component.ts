@@ -17,6 +17,7 @@ export class AdminOrdersComponent implements OnInit {
   ImagePath : string = '';
   disableBtn = true;
   optionValue : number;
+  userDetails = {};
   constructor(
     private afStorage : AngularFireStorage,
     private profileServices : ProfileService,
@@ -24,7 +25,9 @@ export class AdminOrdersComponent implements OnInit {
   ) { }
   
   ngOnInit() {
-    
+    this.profileServices.getLoggedInUser().subscribe((userDetails) => {
+      this.userDetails = userDetails;
+    })
   }
 
   selectGender(event: any):void{
@@ -43,8 +46,25 @@ export class AdminOrdersComponent implements OnInit {
 
 
 profileSubmit(profileForm): void {
-  const profileObjectCopy = {...profileForm.value}
-  const profileObject = {...profileObjectCopy, profilImage : this.ImagePath};
+  const profileObjectCopy = {...profileForm.value};
+  const {pincode, landmark, address2, address1, phoneNumber}  = profileObjectCopy;
+  console.log('pincode', pincode);
+  const profileDetails = {
+    
+  }
+  const address = [{
+    pincode,
+    landmark,
+    address2,
+    address1, 
+    phoneNumber
+  }]
+  
+  const profileObject = {
+    fname : profileObjectCopy.firstName,
+    lname : profileObjectCopy.lastName,
+    gender : profileObjectCopy.selectGender, 
+     profilImage : this.ImagePath, address : address};
   this.profileServices.saveProfileData(profileObject).then((data) => {
       this.router.navigate(['/products'])
   })

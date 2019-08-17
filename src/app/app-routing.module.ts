@@ -12,21 +12,22 @@ import { MyOrderComponent } from './my-order/my-order.component';
 import { AuthGaurdService } from './auth-gaurd.service';
 import { SignupComponent } from './auth/signup/signup.component';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
-
+import {DeliveryComponent} from './delivery/delivery.component';
 import {ForgetPasswordComponent} from './auth/forget-password/forget-password.component';
 const routes: Routes = [
-  {path : '', component : HomeComponent},
-  {path :"sign-up", component: SignupComponent },
+  {path : '', component : HomeComponent, pathMatch: 'full'},
+  {path : 'sign-up', component: SignupComponent },
   {path : 'products', component : ProdutsComponent},
   {path : 'shopping-cart', component : ShoppingCartComponent},
   {path : 'forget-password', component : ForgetPasswordComponent},
-  {path : 'my/orders', component : MyOrderComponent, canActivate : [AuthGaurdService]},
-  {path : 'check-out', component : CheckOutComponent, canActivate : [AuthGaurdService]},
-  {path : 'order-success', component : OrederSuccessfulComponent, canActivate : [AuthGaurdService]},
-  {path : 'admin/products/new', component : ProductFormComponent, canActivate : [AuthGaurdService]},
-  {path : 'admin/products/:id', component : ProductFormComponent, canActivate : [AuthGaurdService]},
-  {path : 'admin/products', component : AdminProductsComponent, canActivate : [AuthGaurdService]},
-  {path : 'profile', component : AdminOrdersComponent}
+  {path : 'my/orders', component : MyOrderComponent},
+  {path : 'check-out', component : CheckOutComponent},
+  {path : 'order-success', component : OrederSuccessfulComponent},
+  {path : 'admin/products/new', component : ProductFormComponent},
+  {path : 'admin/products/:id', component : ProductFormComponent},
+  {path : 'admin/products', component : AdminProductsComponent},
+  {path : 'profile', component : AdminOrdersComponent},
+  {path : 'delivery-address', component : DeliveryComponent}
 ];
 
 @NgModule({

@@ -1,9 +1,9 @@
-
 <form (ngSubmit)=login(LoginForm.value) #LoginForm="ngForm" autocomplete="off">
-        
+
     <div class="form-group">
         <label for="login-email">Email address:</label>
-        <input type="text" class="form-control" id="login-email" name="email" #LoginFormemail="ngModel" ngModel required email>
+        <input type="text" class="form-control" id="login-email" name="email" #LoginFormemail="ngModel" ngModel required
+            email>
         <div class="alert alert-danger" *ngIf="LoginFormemail.touched && LoginFormemail.invalid">
             <div *ngIf="LoginFormemail.errors.required">Email is required</div>
             <div *ngIf="LoginFormemail.errors.email">Please enter proper email</div>
@@ -11,7 +11,8 @@
     </div>
     <div class="form-group">
         <label for="login-pwd">Password:</label>
-        <input type="password" class="form-control" id="login-pwd" #LoginFormpassword="ngModel" name="password" ngModel required>
+        <input type="password" class="form-control" id="login-pwd" #LoginFormpassword="ngModel" name="password" ngModel
+            required>
         <div class="alert alert-danger" *ngIf="LoginFormpassword.touched && LoginFormpassword.invalid">
             <div *ngIf="LoginFormpassword.errors.required">password is required</div>
         </div>
@@ -19,11 +20,13 @@
     </div>
 
     <div class="form-group">
-       <a [routerLink] ="['/forget-password']">Forget Password?</a>
+        <a [routerLink]="['/forget-password']">Forget Password?</a>
     </div>
     <div class="form-group">
-           <span>New User</span> <a [routerLink] ="['/sign-up']">Forget Password?</a>
-         </div>
-    <button type="submit" class="btn btn-primary margn-right" [disabled] ="LoginForm.invalid">Submit</button>
-    <button type="button" class="btn btn-dark" (click) ="cancelForm(LoginForm)">Cancel</button>
+        <span>New User?</span> <a [routerLink]="['/sign-up']">SignUp here</a>
+    </div>
+    <div class="form-group logn-btn">
+        <button type="submit" class="btn btn-primary margn-right" [disabled]="LoginForm.invalid">Login</button>
+        <button type="button" class="btn btn-dark mrgn-cancel-btn" (click)="cancelForm(LoginForm)">Cancel</button>
+    </div>
 </form>

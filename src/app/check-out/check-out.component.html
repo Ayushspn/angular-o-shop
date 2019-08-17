@@ -2,7 +2,7 @@
     <div class="add-mrgn">
         <p><b>Totla Price</b> {{finalProductPrice | currency:"₹": true }}</p>
     </div>
-    <button type="button" class="btn btn-lg btn-primary btn-block btn-check-out add-mrgn">
+    <button type="button" class="btn btn-lg btn-primary btn-block btn-check-out add-mrgn" (click) ="redirectToCheckOut()">
         Checkout
     </button>
     <div class="add-mrgn">
